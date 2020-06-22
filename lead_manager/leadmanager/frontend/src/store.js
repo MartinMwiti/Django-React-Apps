@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import thunk from 'react-redux'
+import thunk from 'redux-thunk'
 
 import rootReducer from './reducers' // This will look for 'index.js' inside 'reducers' folder
 
