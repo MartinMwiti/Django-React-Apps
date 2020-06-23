@@ -20,7 +20,9 @@ class Alerts extends Component {
 
     if(message !==prevProps.message){
       message.deleteLead && alert.success(message.deleteLead) // 'message.deleteLead' refers to the msg i dispatched ''Lead Deleted'
+      message.addLead && alert.success(message.addLead);
     }
+
   }
 
   render() {

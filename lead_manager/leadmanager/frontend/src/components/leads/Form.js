@@ -25,6 +25,11 @@ class Form extends Component {
     const { name, email, message } = this.state; // pulling each value from this component state ad assigning to each value name
     const lead = { name, email, message }; // bundling the values into a const lead
     this.props.addLead(lead) // passing the lead to the 'addLead' action
+    this.setState({
+      name: '',
+      email: '',
+      message: ''
+    }) // clear the input area after making a submit on the form
   };
 
   render() {
