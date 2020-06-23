@@ -37,7 +37,8 @@ export class Leads extends Component {
                 <td>{lead.message}</td>
                 <td>
                   <button
-                    onClick={this.props.deleteLead.bind(this, lead.id)}
+                    onClick={this.props.deleteLead.bind(this, lead.id)} 
+                    // call the 'delete' action.
                     className="btn btn-danger btn-sm"
                   >
                     {" "}
