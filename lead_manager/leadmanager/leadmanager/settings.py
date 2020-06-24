@@ -41,7 +41,12 @@ INSTALLED_APPS = [
     'leads',
     'frontend',
     'rest_framework',
+    'knox'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication')
+} # run migrate to apply the auth into the database
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
