@@ -40,12 +40,13 @@ INSTALLED_APPS = [
 
     'leads',
     'frontend',
+    'accounts',
     'rest_framework',
     'knox'
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication')
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',) # since in tuples, if we have one value, add trailing ','
 } # run migrate to apply the auth into the database
 
 MIDDLEWARE = [
