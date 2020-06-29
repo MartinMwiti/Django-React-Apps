@@ -43,6 +43,8 @@
 + To fix this problem, make sure to backup the database by excluding ``contenttypes`` and ``auth.permissions`` tables
 
         ./manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
+		
+		./manage.py dumpdata --exclude auth.permission --exclude contenttypes  --exclude admin.LogEntry --exclude sessions --indent 2 > db.json
 
     + Now you can use loaddata command with a fresh database
 
