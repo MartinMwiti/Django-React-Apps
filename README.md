@@ -7,6 +7,11 @@
 	
 --- 
 ### Dump Data
++ django-admin dumpdata [app_label[.ModelName] [app_label[.ModelName] ...]]
++ If no application name is provided, all installed applications will be dumped.
++ The output of **dumpdata** can be used as input for **loaddata**.
++ If you specify a model name, the output will be restricted to that model, rather than the entire application.
+
 **dumpdata for backup specific app**
 
     ./manage.py dumpdata appname > data.json
@@ -40,9 +45,9 @@
 ### Restore fresh database
 + When you backup whole database by using dumpdata command, it will backup all the database tables
 + If you use this database dump to load the fresh database(in another django project), it can be causes *IntegrityError* (If you ``loaddata`` in same database it works fine)
-+ To fix this problem, make sure to backup the database by excluding ``contenttypes`` and ``auth.permissions`` tables
-
-        ./manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json
++ To fix this problem, make sure to backup the database by excluding ``contenttypes`` and ``auth.permissions`` tables.
++ Note that dumpdata uses the default manager on the model for selecting the records to dump. If you’re using a custom manager as the default manager and it filters some of the available records, not all of the objects will be dumped.
++ Uses Django’s base manager, dumping records which might otherwise be filtered or modified by a custom manager.
 		
 		./manage.py dumpdata --exclude auth.permission --exclude contenttypes  --exclude admin.LogEntry --exclude sessions --indent 2 > db.json
 
