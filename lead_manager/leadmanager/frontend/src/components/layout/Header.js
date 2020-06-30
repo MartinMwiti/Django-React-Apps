@@ -1,8 +1,40 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
+import { connect } from "react-redux"
+import PropTypes from 'prop-types'
+
+
 
 class Header extends Component {
+  static = {
+    auth: PropTypes.object.isRequired
+  }
     render() {
+      const { isAuthenticated, user } = this.props.auth
+
+      const authLinks = (
+        <ul className="navbar-nav mt-2 mt-lg-0 float-right">
+          <li className="nav-item">
+            <button className="nav-link btn btn-info btn-sm text-light">Logout</button>
+          </li>
+        </ul>
+      );
+
+      const guestLinks = (
+        <ul className="navbar-nav mt-2 mt-lg-0 float-right">
+          <li className="nav-item">
+            <Link to="/register" className="nav-link">
+              Register
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/login" className="nav-link">
+              login
+            </Link>
+          </li>
+        </ul>
+      );
+
         return (
           <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             <button
@@ -21,18 +53,8 @@ class Header extends Component {
                 <a className="navbar-brand" href="#">
                   Lead Manager
                 </a>
-                <ul className="navbar-nav mt-2 mt-lg-0 float-right">
-                  <li className="nav-item">
-                    <Link to="/register" className="nav-link">
-                      Register
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/login" className="nav-link">
-                      login
-                    </Link>
-                  </li>
-                </ul>
+                {isAuthenticated ? authLinks : guestLinks}{" "}
+                {/* Display certain links depending on if the user is isAuthenticated */}
               </div>
             </div>
           </nav>
@@ -40,4 +62,7 @@ class Header extends Component {
     }
 }
 
-export default Header;
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+export default connect(mapStateToProps)(Header);
