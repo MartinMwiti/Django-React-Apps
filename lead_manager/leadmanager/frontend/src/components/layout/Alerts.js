@@ -16,6 +16,7 @@ class Alerts extends Component {
       error.msg.name && alert.error(`Name: ${error.msg.name.join()}`); // shorter but same as above code.
       error.msg.email && alert.error(`Email: ${error.msg.email.join()}`); //'`Name: ${error.msg.join()}` since the error is an array so i use join() to make it a string
       error.msg.message && alert.error(`Message: ${error.msg.message.join()}`);
+      error.msg.non_field_errors && alert.error(error.msg.non_field_errors.join());
     }
 
     if(message !==prevProps.message){
