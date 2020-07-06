@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
+# BaseUserManager, that uses an email as the unique identifier instead of a username.
 
 class UserAccountManager(BaseUserManager):
     """
@@ -36,7 +37,8 @@ class UserAccountManager(BaseUserManager):
         return user
 
 
-
+# Custom User Model
+ ## username does not exist for the AbstractBaseUser option
 class UserAccount(AbstractBaseUser, PermissionsMixin):
     """
     Database model for the users
@@ -46,9 +48,11 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     
+    # Specified that all objects for the class come from the UserAccountManager
     objects = UserAccountManager()
 
-    # By default, Django uses username for authentication. To override that to set to email
+    # By default, Django uses username for authentication. To override that & set it to email
+    # Set the USERNAME_FIELD -- which defines the unique identifier for the User model -- to email
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name'] # email is already required, no need to add
 

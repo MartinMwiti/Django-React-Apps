@@ -25,9 +25,11 @@ class SignUpView(APIView):
                 
                 # if all checks as met
                 else:
-                    user = User.objects.create_user(email=email, password=password, name=name)  # 'create_user()' found in my custom user model
+                    # 'create_user()' found in my custom user model
+                    user = User.objects.create_user(email=email, name=name, password=password)
                     
                     user.save()
+                    
                     return Response({'success': 'User created successfully'})
 
 
