@@ -20,6 +20,19 @@
 3. (TWO WAYS TO CREATE A DATABASE)
 
 - (Option 1) In the **pgAdmin** create database with the name of your choosing. Have it have **Owner** set to **postgres**.
-- (Option 2) In the cmd type psql -U userName `psql -U postgres` --> enter password --> ```CREATE DATABASE realest_estate Owner postgres;``` **NB: This will automatically add the database to the pgAdmin**
+- (Option 2) In the cmd type *psql -U userName* `psql -U postgres` --> enter password --> ```CREATE DATABASE realest_estate Owner postgres;``` **NB: This will automatically add the database to the pgAdmin**
 
-4. To operate the database in cmd run psql -U userName databaseName ```psql -U postgres real_estate```
+4. To operate the database in cmd run *psql -U userName databaseName* ```psql -U postgres real_estate```
+
+---
+[Source: Models](https://testdriven.io/blog/django-custom-user-model/)
+
+**AbstractUser vs AbstractBaseUser**
+* The default User model in Django uses a username to uniquely identify a user during authentication. If you'd rather use an email address, you'll need to create a custom User model by either subclassing **AbstractUser** or **AbstractBaseUser**.
+
+* Options:
+
+1. **AbstractUser**: Use this option if you are happy with the existing fields on the User model and just want to remove the username field.
+2. **AbstractBaseUser**: Use this option if you want to start from scratch by creating your own, completely new User model.
+
+---
