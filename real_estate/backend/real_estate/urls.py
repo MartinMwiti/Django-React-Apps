@@ -16,6 +16,5 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #urls for my media to be able to access via urls
 
 # catch all other routes not in the above urlpatterns. i.e the one used in react frontend and 404 errors
-urlpatterns += [re_path(r'^.*',
-                        TemplateView.as_view(template_name='index.html'))]
+# urlpatterns += [re_path(r'^.*',TemplateView.as_view(template_name='index.html'))] # Any site not provides, direct to 'index.html'
 
