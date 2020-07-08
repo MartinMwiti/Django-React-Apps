@@ -13,7 +13,7 @@ class Listing(models.Model):
         CONDO = 'Condo'
         TOWNHOUSE = 'TownHouse'
 
-    realtor = models.name = models.ForeignKey(Realtor, related_name='', on_delete=models.DO_NOTHING)
+    realtor = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING) # LATER TO ADD related_name
     slug = models.CharField(max_length=200, unique=True)
     title = models.CharField(max_length=150)
     address = models.CharField(max_length=100)
