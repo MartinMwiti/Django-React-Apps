@@ -8,3 +8,4 @@
 7. ```user.is_staff = True```
 8. ```user.save()```
 9. ```exit()```
+
