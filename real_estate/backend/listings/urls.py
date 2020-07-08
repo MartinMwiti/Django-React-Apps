@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import RealtorListView, RealtorView, TopSellerView
+from .views import ListingsView, ListingView, SearchView
 
 urlpatterns = [
-    path('', RealtorListView.as_view()),
-    path('topseller', TopSellerView.as_view()),
-    path('<pk>', RealtorView.as_view()),
+    path('', ListingsView.as_view()),
+    path('search', SearchView.as_view()),
+    path('<slug>', ListingView.as_view()),
 ]
