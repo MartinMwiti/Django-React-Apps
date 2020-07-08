@@ -8,7 +8,7 @@ from .serializers import ListingSerializer, ListingDetailSerializer
 from datetime import datetime, timezone, timedelta
 
 
-class ListingsView(ListAPIView):
+class ListingsView(ListAPIView): # Get request
     permission_classes = (permissions.AllowAny, ) # don't need to be authenticated to view that data
 
     queryset = Listing.objects.order_by('-list_date').filter(is_published=True)
@@ -16,7 +16,7 @@ class ListingsView(ListAPIView):
     lookup_field = 'slug'
 
 
-class ListingView(RetrieveAPIView):
+class ListingView(RetrieveAPIView): # Get request
     queryset = Listing.objects.order_by('-list_date').filter(is_published=True)
     serializer_class = ListingDetailSerializer
     lookup_field = 'slug'
