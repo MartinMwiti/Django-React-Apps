@@ -1,11 +1,14 @@
 import React from 'react';
 
+// component
+import Layout from './hocs/Layout'
 
-function App() {
+
+const App = ()=> {
   return (
-    <div >
-      App
-    </div>
+    <Layout> 
+      
+    </Layout>
   );
 }
 
