@@ -21,24 +21,25 @@ import store from './store'
 
 
 
-const App = ()=> {
-  <Provider store={store}>
-    <Router>
-      <Layout>
-        {/* Switch makes it such that only one route get displayed */}
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/contact" component={Contact} />
-          <Route exact path="/listings/:id" component={ListingDetail} />
-          <Route exact path="/listings" component={Listings} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={SignUp} />
-          <Route component={NotFound} />
-        </Switch>
-      </Layout>
-    </Router>
-  </Provider>;
-}
+const App = () => (
+    <Provider store={store}>
+      <Router>
+        <Layout>
+          {/* Switch makes it such that only one route get displayed */}
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/contact" component={Contact} />
+            <Route exact path="/listings/:id" component={ListingDetail} />
+            <Route exact path="/listings" component={Listings} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route component={NotFound} />
+          </Switch>
+        </Layout>
+      </Router>
+    </Provider>
+)
+
 
 export default App;
