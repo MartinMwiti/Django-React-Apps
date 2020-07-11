@@ -144,7 +144,7 @@ DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE': True, # now you'll need a password retype (confirm field) when creating an account
     'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
-    'SEND_CONFIRMATION_EMAIL': True,
+    'SEND_CONFIRMATION_EMAIL': True, # email for user confirmation
     'SET_USERNAME_RETYPE': True,
     'SET_PASSWORD_RETYPE': True,
     # Add more that you need here from djoser docs
@@ -152,7 +152,11 @@ DJOSER = {
     'USERNAME_RESET_CONFIRM_URL': 'email/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': 'activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
-    'SERIALIZERS': {},
+    'SERIALIZERS': {
+        'user_create': 'accounts.serializers.UserCreateSerializer',
+        'user': 'accounts.serializers.UserCreateSerializer',
+        'user_delete': 'djoser.serializers.UserDeleteSerializer',
+    },
 }
 
 
