@@ -28,3 +28,7 @@ body{
         padding: 0;
     }
 }
+
+::selection {
+    background-color: rgb($color-primary, 0.3);
+}
