@@ -147,11 +147,13 @@ DJOSER = {
     'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
     'SEND_CONFIRMATION_EMAIL': True, # email for user confirmation
+    'LOGOUT_ON_PASSWORD_CHANGE': True, #ADDED
+    'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True, #ADDED
     'SET_USERNAME_RETYPE': True,
     'SET_PASSWORD_RETYPE': True,
     # Add more that you need here from djoser docs
-    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': 'email/reset/confirm/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}', # the url to sent to your email so when you click, you get redirected to password change page
+    'USERNAME_RESET_CONFIRM_URL': 'email/reset/confirm/{uid}/{token}', # the url to sent to your email so when you click, you get redirected to username change page
     'ACTIVATION_URL': 'activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
     'SERIALIZERS': {
