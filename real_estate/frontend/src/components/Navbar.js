@@ -68,6 +68,8 @@ const Navbar = ({auth:{isAuthenticated, loading}, logout}) =>{
           </div>
 
         </nav>
+        {/* ALERT POPUP COMPONENT */}
+        <Alert />
       </Fragment>
     );
     
