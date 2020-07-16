@@ -11,7 +11,7 @@ const middleWare = [thunk]
 
 
 const store = createStore(
-    rootReducer,
+    rootReducer, //allow created reducers to interact with the store
     initialState,
     composeWithDevTools(applyMiddleware(...middleWare)) 
 )

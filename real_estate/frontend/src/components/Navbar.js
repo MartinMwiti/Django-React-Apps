@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux' //connect individual components to the redux store
 
 import { logout }  from "../actions/auth"
 import Alert from "./Alert"
@@ -81,6 +81,7 @@ Navbar.prototype = {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth
+    auth: state.auth 
 })
 export default connect(mapStateToProps, { logout })(Navbar);
+// Caution mapStateToProps should always be the first argument passed to connect because it’s configured to receive that function as its first argument. 
