@@ -8,15 +8,13 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(),
-         name='token_refresh'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/accounts/', include('accounts.urls')),
     path('api/realtors/', include('realtors.urls')),
     path('api/listings/', include('listings.urls')),
-    path('contacts/', include('contacts.urls')),
+    path('api/contacts/', include('contacts.urls')),
     path('admin/', admin.site.urls),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #urls for my media to be able to access via urls
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# catch all other routes not in the above urlpatterns. i.e the one used in react frontend and 404 errors
-# urlpatterns += [re_path(r'^.*',TemplateView.as_view(template_name='index.html'))] # Any site not provides, direct to 'index.html'
-
+urlpatterns += [re_path(r'^.*',
+                        TemplateView.as_view(template_name='index.html'))]
