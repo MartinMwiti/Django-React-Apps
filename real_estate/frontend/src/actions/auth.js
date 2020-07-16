@@ -34,7 +34,7 @@ export const login = (email, password) => async dispatch => {
     }
 }
 
-
+// when signup action is called in the signup components, this action-signup will take/require the components to provide (name, email, password, password2) whose fields are based on the requirements from my signup api in django.
 export const signup = ({ name, email, password, password2 }) => async dispatch =>{
     const config = {
       headers: {

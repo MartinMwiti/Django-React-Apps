@@ -15,14 +15,8 @@ import Login from "./containers/Login";
 import SignUp from "./containers/SignUp";
 import NotFound from "./components/NotFound";
 
-// Redux
-import { Provider } from 'react-redux'
-import store from './store'
 
-
-
-const App = () => (
-    <Provider store={store}>
+const App = () => (    
       <Router>
         <Layout>
           {/* Switch makes it such that only one route get displayed */}
@@ -38,7 +32,6 @@ const App = () => (
           </Switch>
         </Layout>
       </Router>
-    </Provider>
 )
 
 
