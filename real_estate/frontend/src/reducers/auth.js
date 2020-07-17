@@ -8,7 +8,7 @@ import {
 
 // state to be updated by the reducer func below
 const initialState = {
-    token: localStorage.getItem('token'),
+    token: localStorage.getItem("token"),
     isAuthenticated: null,
     loading: false
 }
@@ -21,10 +21,10 @@ export default function(state = initialState, action) {
       case LOGIN_SUCCESS:
         localStorage.setItem("token", payload.access);
         return {
-          ...state, //take whatever is in the state and append token, isAuthenticated, loading from the action.payload
-          token: payload.access,
+          ...state,
           isAuthenticated: true,
           loading: false,
+          token: payload.access,
         };
       case SIGNUP_SUCCESS:
         return {
