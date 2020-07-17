@@ -73,7 +73,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'real_estate',
-        'USER': os.environ.get('POSTGRES_USER'),
+        'USER': os.environ.get('POSTGRESQL_USER'),
         'PASSWORD': os.environ.get('POSTGRESQL_KEY'),
         'HOST': os.environ.get('POSTGRES_HOST')
     }
