@@ -9,7 +9,25 @@ import Pagination from "../components/Pagination"
 
 
 const Home = () => {
-    return()
+    const [listings, setListings] = useState([])
+    const [currentPage, setCurrentPage] = useState(1);
+    const [listingsPerPage, setListingsPerPage] = useState(3);
+    const [active, setActive] = useState(1);
+
+    const indexOfLastListing = currentPage * listingsPerPage
+    const indexOfFirstListing = indexOfLastListing - listingsPerPage
+    const currentListings = listings.slice(indexOfFirstListing, indexOfLastListing)
+
+    const visitPage = (page) => {
+        setCurrentPage(page)
+        setActive(page)
+    }
+
+    return(
+        <div>
+            
+        </div>
+    )
 }
 
 export default Home
