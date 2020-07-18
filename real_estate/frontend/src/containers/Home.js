@@ -23,11 +23,51 @@ const Home = () => {
         setActive(page)
     }
 
-    return(
-        <div>
-            
-        </div>
-    )
+    const previous_number = () =>{
+        if (currentPage !==1){ // make sure it's not the first page since first page can't have prev page
+            setCurrentPage(currentPage-1)
+            setActive(currentPage-1)
+        }
+    }
+
+    const next_number = () => {
+      if (currentPage !== Math.ceil(listings.length/3)) { // if it's not equal to last page
+        setCurrentPage(currentPage + 1);
+        setActive(currentPage + 1);
+      }
+    };
+
+    return (
+      <main className="home">
+        <Helmet>
+          <title>RealState-Home</title>
+          <meta>name="description" content="RealState"</meta>
+        </Helmet>
+        <section className="home__form">
+            <ListingForm setListings={setListings} />
+        </section>
+        <section className="home__listings">
+            <Listings listings={currentListings} />
+        </section>
+        <section className="home__pagination">
+            <div className="row">
+              {
+                listings.length !== 0 ? (
+                  <Pagination 
+                    itemsPerPage = {listingsPerPage}
+                    count = {listings.length}
+                    visitPage={visitPage}
+                    previous = {previous_number}
+                    next = {next_number}
+                    active = {active}
+                    setActive = {setActive}
+                  />
+                ) : null
+              }            
+            </div>
+        </section>
+      </main>
+    );
 }
 
 export default Home
