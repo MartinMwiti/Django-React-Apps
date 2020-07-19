@@ -108,8 +108,8 @@ const SignUp = ({ setState, signup, isAuthenticated }) => {
 
 SignUp.propTypes = {
   signup: PropTypes.func.isRequired,
-  setAlert: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
+  setAlert: PropTypes.func,
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({

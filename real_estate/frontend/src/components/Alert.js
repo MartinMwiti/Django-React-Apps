@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 
-const Alert = ({ alerts }) => alerts !== null && alerts.length > 0 && alerts.map(alert=> (
+const Alert = ({ alerts }) => 
+    alerts !== null && alerts.length > 0 && alerts.map(alert=> (
     // alert.id will use the uuid found in alert.js
     <div key={alert.id} className={`alert alert--${alert.alertType}`}> 
         {alert.msg}

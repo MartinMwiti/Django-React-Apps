@@ -3,6 +3,7 @@ import axios from "axios";
 import Loader from "react-loader-spinner";
 import PropTypes from "prop-types";
 
+
 const ListingForm = (props) => {
   const [formData, setFormData] = useState({
     sale_type: "For Sale",
@@ -63,12 +64,13 @@ const ListingForm = (props) => {
         config
       )
       .then((res) => {
-        setLoading(false);
-        props.setListings(res.data);
-        window.scrollTo(0, 0);
+       setLoading(false);
+       props.setListings(res.data);
+       window.scrollTo(0, 0)       
       })
       .catch((err) => {
         setLoading(false);
+        
         window.scrollTo(0, 0);
       });
   };
