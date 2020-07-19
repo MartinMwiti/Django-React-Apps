@@ -8,15 +8,16 @@ from .serializers import ListingSerializer, ListingDetailSerializer
 from datetime import datetime, timezone, timedelta
 
 
-class ListingsView(ListAPIView): # Get request
-    permission_classes = (permissions.AllowAny, ) # don't need to be authenticated to view that data
+class ListingsView(ListAPIView):  # Get request
+    # don't need to be authenticated to view that data
+    permission_classes = (permissions.AllowAny, )
 
     queryset = Listing.objects.order_by('-list_date').filter(is_published=True)
     serializer_class = ListingSerializer
     lookup_field = 'slug'
 
 
-class ListingView(RetrieveAPIView): # Get request
+class ListingView(RetrieveAPIView):  # Get request
     queryset = Listing.objects.order_by('-list_date').filter(is_published=True)
     serializer_class = ListingDetailSerializer
     lookup_field = 'slug'
@@ -24,16 +25,19 @@ class ListingView(RetrieveAPIView): # Get request
 
 class SearchView(APIView):
     permission_classes = (permissions.AllowAny, )
-
     serializer_class = ListingSerializer
 
     def post(self, request, format=None):
-        queryset = Listing.objects.order_by('-list_date').filter(is_published=True) # with post func you don't need to name it queryset. You do that for generic views
+        # with post func you don't need to name it queryset. You do that for generic views
+        queryset = Listing.objects.order_by(
+            '-list_date').filter(is_published=True)
+        # request.data returns the parsed content of the request body
         data = self.request.data
 
         # Sale type
         sale_type = data['sale_type']
-        queryset = queryset.filter(sale_type__iexact=sale_type) # where sale type is exactly
+        # where sale type is exactly
+        queryset = queryset.filter(sale_type__iexact=sale_type)
 
         # Price
         price = data['price']
@@ -56,9 +60,8 @@ class SearchView(APIView):
         elif price == 'Any':
             price = -1
 
-        if price != -1: # not querying where price is 'Any'
+        if price != -1:  # not querying where price is 'Any'
             queryset = queryset.filter(price__gte=price)
-
 
         # Bedrooms
         bedrooms = data['bedrooms']
@@ -81,7 +84,6 @@ class SearchView(APIView):
         home_type = data['home_type']
         queryset = queryset.filter(home_type__iexact=home_type)
 
-
         # Bathrooms
         bathrooms = data['bathrooms']
         if bathrooms == '0+':
@@ -96,7 +98,6 @@ class SearchView(APIView):
             bathrooms = 4.0
 
         queryset = queryset.filter(bathrooms__gte=bathrooms)
-
 
         # sqft
         sqft = data['sqft']
@@ -114,7 +115,6 @@ class SearchView(APIView):
         if sqft != 0:
             queryset = queryset.filter(sqft__gte=sqft)
 
-        
         # Days passed
         days_passed = data['days_listed']
         if days_passed == '1 or less':
@@ -129,15 +129,15 @@ class SearchView(APIView):
             days_passed = 20
         elif days_passed == 'Any':
             days_passed = 0
-        
+
         for query in queryset:
             num_days = (datetime.now(timezone.utc) - query.list_date).days
 
-            if days_passed !=0:
-                if num_days > days_passed: # exclude data/slug for days exceeding the specified days_passed
+            if days_passed != 0:
+                if num_days > days_passed:  # exclude data/slug for days exceeding the specified days_passed
                     slug = query.slug
-                    queryset = queryset.exclude(slug__iexact=slug) # exclude where slag is equal to slug of the current listing
-
+                    # exclude where slag is equal to slug of the current listing
+                    queryset = queryset.exclude(slug__iexact=slug)
 
         has_photos = data['has_photos']
         if has_photos == '1+':
@@ -150,12 +150,12 @@ class SearchView(APIView):
             has_photos = 10
         elif has_photos == '15+':
             has_photos = 15
-        
+
         for query in queryset:
             count = 0
 
             if query.photo_1:
-                count +=1
+                count += 1
             if query.photo_2:
                 count += 1
             if query.photo_3:
@@ -194,35 +194,19 @@ class SearchView(APIView):
                 count += 1
             if query.photo_20:
                 count += 1
-            
+
             if count < has_photos:
                 slug = query.slug
-                queryset = queryset.exclude(slug__iexact=slug) # exclude those listings that don't have the specified # of photos
+                # exclude those listings that don't have the specified # of photos
+                queryset = queryset.exclude(slug__iexact=slug)
 
-            
         open_house = data['open_house']
         queryset = queryset.filter(open_house__iexact=open_house)
 
-
         keywords = data['keywords']
-        queryset = queryset.filter(description__icontains=keywords) # if any keywords are contained in the description, filter out
-
+        # if any keywords are contained in the description, filter out
+        queryset = queryset.filter(description__icontains=keywords)
 
         serializer = ListingSerializer(queryset, many=True)
 
-        return Response(serializer.data) # make it into Json data
-
-
-
-            
-
-
-
-
-
-        
-
-
-
-
-    
+        return Response(serializer.data)  # make it into Json data
