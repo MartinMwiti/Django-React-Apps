@@ -12,6 +12,7 @@ const ListingDetail = (props) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     };
 
+     // similar to componentDidMount, componentWillUnmount
     useEffect(() => {
         const slug = props.match.params.id;
 
@@ -31,6 +32,7 @@ const ListingDetail = (props) => {
         });
     }, [props.match.params.id]);
 
+    // similar to componentDidMount, componentWillUnmount
     useEffect(() => {
         const id = listing.realtor;
 
