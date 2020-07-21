@@ -23,7 +23,7 @@ const ListingDetail = (props) => {
         };
 
         axios
-          .get(`http://localhost:8000/api/listings/${slug}`, config)
+          .get(`${process.env.REACT_APP_API_URL}/api/listings/${slug}`, config)
           .then((res) => {
             setListing(res.data);
             setPrice(numberWithCommas(res.data.price));
@@ -42,13 +42,15 @@ const ListingDetail = (props) => {
         };
 
         if (id) {
-            axios.get(`http://localhost:8000/api/realtors/${id}`, config)
-            .then(res => {
+            axios
+              .get(
+                `${process.env.REACT_APP_API_URL}/api/realtors/${id}`,
+                config
+              )
+              .then((res) => {
                 setRealtor(res.data);
-            })
-            .catch(err => {
-
-            });
+              })
+              .catch((err) => {});
         }
     }, [listing.realtor]);
 

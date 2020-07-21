@@ -14,6 +14,7 @@ import Listings from "./containers/Listings";
 import Login from "./containers/Login";
 import SignUp from "./containers/SignUp";
 import NotFound from "./components/NotFound";
+import PrivateRoute from "./components/privateRoute"
 
 
 const App = () => (    
@@ -24,7 +25,8 @@ const App = () => (
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
-            <Route exact path="/listings/:id" component={ListingDetail} />
+            {/* Need to be authenticated in order to access the route */}
+            <PrivateRoute exact path="/listings/:id" component={ListingDetail} /> 
             <Route exact path="/listings" component={Listings} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={SignUp} />

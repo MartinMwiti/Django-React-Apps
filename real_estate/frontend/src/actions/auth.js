@@ -19,7 +19,7 @@ export const login = (email, password) => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      "http://localhost:8000/api/token/",
+     `${process.env.REACT_APP_API_URL}/api/token/`,
       body,
       config
     );
@@ -52,7 +52,7 @@ export const signup = ({ name, email, password, password2 }) => async (
 
   try {
     const res = await axios.post(
-      "http://localhost:8000/api/accounts/signup",
+      `${process.env.REACT_APP_API_URL}/api/accounts/signup`,
       body,
       config
     );

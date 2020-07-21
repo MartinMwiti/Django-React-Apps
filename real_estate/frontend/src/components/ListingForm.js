@@ -48,7 +48,7 @@ const ListingForm = (props) => {
     setLoading(true);
     axios
       .post(
-        "http://localhost:8000/api/listings/search",
+        `${process.env.REACT_APP_API_URL}/api/listings/search`,
         {
           sale_type,
           price,
