@@ -1,0 +1,31 @@
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both
+    }
+}
+
+// content centering
+@mixin absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// responsiveness
+@mixin respond($breakpoint) {
+    @if breakpoint == phone {
+        @media only screen and (max-width: 37.5em){ @content }; //respond to 600px max-width
+    }
+    @if breakpoint == tab-port {
+        @media only screen and (max-width: 56.25em){ @content }; // respond to 900px
+    }
+    @if breakpoint == tab-land {
+        @media only screen and (max-width: 75em){ @content }; // respond to 1200px
+    }
+    @if breakpoint == big-desktop {
+        @media only screen and (min-width: 112em){ @content }; // respond to any larger than 1800px screen
+    }
+}

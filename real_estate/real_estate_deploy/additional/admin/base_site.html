@@ -1,0 +1,13 @@
+<!-- Override the default -->
+{% extends admin/base.html %} 
+{% load static %}
+
+{% block branding %}
+<h1 id="head">
+    RealState Admin
+</h1>
+{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" type="" href="{% static 'css/admin.css' %}" />
+{% endblock %}
