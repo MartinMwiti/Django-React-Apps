@@ -22,15 +22,14 @@ const ListingDetail = (props) => {
             }
         };
 
-        axios.get(`${process.env.REACT_APP_API_URL}/api/listings/${slug}`, config)
-        .then(res => {
+        axios
+          .get(`http://localhost:8000/api/listings/${slug}`, config)
+          .then((res) => {
             setListing(res.data);
             setPrice(numberWithCommas(res.data.price));
-        })
-        .catch(err => {
-
-        });
-    }, [props.match.params.id]);
+          })
+          .catch((err) => {});
+    }, [props.match.params.id]); // whenever there is a change to this, run useEffect
 
     // similar to componentDidMount, componentWillUnmount
     useEffect(() => {
@@ -43,7 +42,7 @@ const ListingDetail = (props) => {
         };
 
         if (id) {
-            axios.get(`${process.env.REACT_APP_API_URL}/api/realtors/${id}`, config)
+            axios.get(`http://localhost:8000/api/realtors/${id}`, config)
             .then(res => {
                 setRealtor(res.data);
             })
@@ -290,7 +289,8 @@ const ListingDetail = (props) => {
             </div>
             <div className='row'>
                 <div className='listingdetail__breadcrumb'>
-                    <Link className='listingdetail__breadcrumb__link' to='/'>Home</Link> / {listing.title}
+                    <Link className='listingdetail__breadcrumb__link' to='/'>Home</Link> / {listing.title} 
+                    {/* breadcrumb */}
                 </div>
             </div>
             <div className='row'>

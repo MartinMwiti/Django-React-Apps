@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AACK,AAAD,eAAO,CAAC;EACJ,UAAU,EAAE,IAAI;CACnB;;AAEA,AAAD,mBAAW,CAAC;EACR,UAAU,EAAE,IAAI;EAChB,aAAa,EAAE,IAAI;CACtB;;AAEA,AAAD,qBAAa,CAAC;EACV,aAAa,EAAE,IAAI;CACtB",
-    "sources": [
-        "listings.scss"
-    ],
-    "names": [],
-    "file": "listings.css"
-}
