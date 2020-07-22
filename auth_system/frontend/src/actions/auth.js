@@ -7,7 +7,39 @@ import {
 } from "./types";
 
 
-export const load_user = () => async (dispatch) => {};
+// LOAD USER
+export const load_user = () => async (dispatch) => {
+    if (localStorage.getItem('access')) {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `JWT ${localStorage.getItem("access")}`,
+            "Accept": "application/json"
+          },
+        }; 
+        try {
+              const res = await axios.get(
+                `${process.env.REACT_APP_API_URL}/auth/users/me/`,
+                config
+              ); // Use this endpoint to retrieve(get request)/update/delete(delete request) the authenticated user.
+
+              dispatch({
+                type: USER_LOADED_SUCCESS,
+                payload: res.data, // Returns {'id', 'email', 'name'} as specified in the serializer in the backend.
+              });
+            } catch (err) {
+          dispatch({
+            type: USER_LOADED_FAIL,
+          });
+        }
+    } else { // if you don't have access token
+        dispatch({
+          type: USER_LOADED_FAIL,
+        });
+    }
+};
+
+
 
 // LOGIN
 export const login = (email, password) => async dispatch => {
@@ -26,7 +58,12 @@ export const login = (email, password) => async dispatch => {
           type: LOGIN_SUCCESS,
           payload: res.data // which will be the access and refresh token
         });
+        // load user after login
+        dispatch(load_user())
+
     } catch (err) {
-        
+        dispatch({
+          type: LOGIN_FAIL,
+        });
     }
 }
