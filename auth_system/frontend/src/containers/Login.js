@@ -11,7 +11,7 @@ const Login = () => {
 
   const {email, password} = formData
 
-  const onChange = e => setformData({...formData, [e.target.value]: e.target.value })
+  const onChange = e => setformData({...formData, [e.target.name]: e.target.value })
 
   const onSubmit = e => {
     e.preventDefault();
@@ -56,10 +56,10 @@ const Login = () => {
         </button>
       </form>
       <p className="mt-3">
-        Don't have an account? <link to="/signup">Sign Up</link>
+        Don't have an account? <Link to="/signup">Sign Up</Link>
       </p>
       <p className="mt-3">
-        Forgot Your Password? <link to="/reset-password">Reset Password</link>
+        Forgot Your Password? <Link to="/reset-password">Reset Password</Link>
       </p>
     </div>
   );
