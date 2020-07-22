@@ -70,7 +70,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'auth_system',
         'USER': 'postgres',
-        'PASSWORD': os.environ.get('POSTGRESQL_PASS'),
+        'PASSWORD': 'shadow',
         'HOST': 'localhost'
     }
 }
