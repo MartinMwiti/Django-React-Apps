@@ -4,10 +4,46 @@ import {
   LOGIN_FAIL,
   USER_LOADED_SUCCESS,
   USER_LOADED_FAIL,
+  AUTHENTICATED_SUCCESS,
+  AUTHENTICATED_FAIL,
+  LOGOUT,
 } from "./types";
 
 
-// LOAD USER
+// Check if a user is Authenticated BY verifying if there is a correct token in the local storage
+//  Helps keep you logged in after refresh
+export const checkAuthenticated = () => async (dispatch) => {
+  if (localStorage.getItem('access')) {
+    const config = {
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          }
+        };
+
+        const body = JSON.stringify({ token:localStorage.getItem('access') })
+        try {
+          const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/jwt/verify/`, body, config)
+          if (res.data.code !== 'token_not_valid'){
+            dispatch({
+              type: AUTHENTICATED_SUCCESS,
+            });
+          }
+        } catch (err) {
+          dispatch({
+            type: AUTHENTICATED_FAIL,
+          });
+        }
+  } else {
+    dispatch({
+      type: AUTHENTICATED_FAIL
+    });
+  }
+}
+
+
+// LOAD USER - Retrieve details of the Authenticated user
+// Helps keep you logged in after refresh
 export const load_user = () => async (dispatch) => {
     if (localStorage.getItem('access')) {
         const config = {
@@ -67,3 +103,11 @@ export const login = (email, password) => async dispatch => {
         });
     }
 }
+
+
+// LOGOUT
+export const logout = () => async (dispatch) => {
+  dispatch({
+    type: LOGOUT,
+  });
+};
