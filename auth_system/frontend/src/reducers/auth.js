@@ -9,6 +9,10 @@ import {
   PASSWORD_RESET_FAIL,
   PASSWORD_RESET_CONFIRM_SUCCESS,
   PASSWORD_RESET_CONFIRM_FAIL,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAIL,
+  ACTIVATION_SUCCESS,
+  ACTIVATION_FAIL,
   LOGOUT,
 } from "../actions/types";
 
@@ -38,7 +42,6 @@ export default function(state = initialState, action) {
           isAuthenticated: false,
         };
 
-
       case LOGIN_SUCCESS:
         localStorage.setItem("access", payload.access);
         return {
@@ -50,6 +53,7 @@ export default function(state = initialState, action) {
         };
 
       case LOGIN_FAIL:
+      case SIGNUP_FAIL:
       case LOGOUT:
         localStorage.removeItem("access");
         localStorage.removeItem("refresh");
@@ -59,10 +63,15 @@ export default function(state = initialState, action) {
           isAuthenticated: false,
           access: null,
           refresh: null,
-          user: null
+          user: null,
         };
 
-        
+      case SIGNUP_SUCCESS:
+        return {
+          ...state,
+          isAuthenticated: false,
+        };
+
       case USER_LOADED_SUCCESS:
         return {
           // update state
@@ -76,14 +85,16 @@ export default function(state = initialState, action) {
           ...state,
           user: null,
         };
-      
+
       case PASSWORD_RESET_SUCCESS:
       case PASSWORD_RESET_FAIL:
       case PASSWORD_RESET_CONFIRM_SUCCESS:
       case PASSWORD_RESET_CONFIRM_FAIL:
+      case ACTIVATION_SUCCESS:
+      case ACTIVATION_FAIL:
         return {
-          ...state
-        }
+          ...state,
+        };
 
       default:
         return state;
