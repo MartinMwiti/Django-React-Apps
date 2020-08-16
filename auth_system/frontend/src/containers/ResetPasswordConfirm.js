@@ -9,7 +9,7 @@ const ResetPasswordConfirm = ({ match, reset_password_confirm }) => {
   const [requestSent, setRequestSent] = useState(false);
   const [formData, setformData] = useState({
     new_password: "",
-    re_new_password: "",
+    re_new_password: ""
   });
 
   const { new_password, re_new_password } = formData;
