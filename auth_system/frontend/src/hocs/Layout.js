@@ -7,11 +7,12 @@ import Navbar from '../components/Navbar'
 
 
 const Layout = (props) =>{
+    //  By using this Hook, you tell React that your component needs to do something after render.
     // runs after component has been mounted. Helps keep you logged in after refresh
     useEffect(() => {
         props.checkAuthenticated();
         props.load_user()
-    }, [])
+    }, [props])
 
     return (
         <div>
